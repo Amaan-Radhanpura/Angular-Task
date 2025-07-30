@@ -1,0 +1,10 @@
+.form{
+height: 300px;
+width: 400px;
+align-items: center;   
+justify-content: center; 
+}
+
+.userdetails{
+    width: full;
+}
