@@ -12,12 +12,16 @@ import {MatCardModule} from '@angular/material/card'
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { PropepertylistComponent } from './propepertylist/propepertylist.component';
 import { FilterComponent } from './propepertylist/filter/filter.component'
+import {HttpClientModule} from '@angular/common/http';
+import { LoginComponent } from './login/login.component'
+import {MatTableModule} from '@angular/material/table'
 
 @NgModule({
   declarations: [
     AppComponent,
     PropepertylistComponent,
-    FilterComponent
+    FilterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +32,9 @@ import { FilterComponent } from './propepertylist/filter/filter.component'
     MatInputModule,
     MatFormFieldModule,
     MatCardModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    HttpClientModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
