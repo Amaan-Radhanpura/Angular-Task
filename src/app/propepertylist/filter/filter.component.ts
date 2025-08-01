@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { carts, main } from 'src/app/products.service';
 
@@ -10,16 +10,38 @@ import { carts, main } from 'src/app/products.service';
 export class FilterComponent  {
 
 displayedcolumns:string[]=['id','userId','totalProducts','totalQuantity','total','discountedTotal']
+search:number=0;
+
+
+
+@Output()
+selectedFilterButtonChange : EventEmitter<string> = new EventEmitter<string>();
+
+@Output()
+Search:EventEmitter<number>= new EventEmitter<number>();
+
+selectedFilterButton:string='';
+
+onSelectedRadioButton(){
+  this.selectedFilterButtonChange.emit(this.selectedFilterButton);
+}
+
+onSearchFunction(){
+  this.Search.emit(this.search);
+}
+
 
 @Input()
 All:number=0;
 
 @Input()
-Buy:number=0;
+greaterThenTen:number=0;
 
 @Input()
-Rent=0;
+lessThenTen:number=0;
+
 
 @Input()
 carts:carts[]=[];
+
 }

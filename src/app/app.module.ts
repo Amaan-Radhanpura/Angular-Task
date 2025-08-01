@@ -15,6 +15,7 @@ import { FilterComponent } from './propepertylist/filter/filter.component'
 import {HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './login/login.component'
 import {MatTableModule} from '@angular/material/table'
+import {MatSelectModule} from '@angular/material/select'
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {MatTableModule} from '@angular/material/table'
     MatCardModule,
     MatSnackBarModule,
     HttpClientModule,
-    MatTableModule
+    MatTableModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

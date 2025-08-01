@@ -1,5 +1,11 @@
-<button mat-raised-button (click)="fetchdetails()">Click me</button>
+<!-- <button mat-raised-button (click)="fetchdetails()">Click me</button> -->
 <br>
 
-<app-filter [All]="All" [Buy]="Buy" [Rent]="Rent" [carts]="CartsData"></app-filter>
+<app-filter [All]="All" 
+[greaterThenTen]="greaterThenTen" 
+[lessThenTen]="lessThenTen" 
+[carts]="Filtereddata"
+(selectedFilterButtonChange)="onFilterChange($event)"
+(Search)="onSearch($event)"
+></app-filter>
 <br>

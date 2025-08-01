@@ -27,7 +27,7 @@ export interface carts{
   total:number;
   totalProducts:number;
   totalQuantity:number;
-  userid:number;
+  userId:number;
 }
 
 export interface products{

@@ -28,7 +28,7 @@ export class LoginComponent {
     this.router.navigate(['/products']);
   }
 
-  search:string='';
+  search:any='';
 
   display:boolean=false;
 
@@ -41,7 +41,8 @@ export class LoginComponent {
     console.log(event)
     this.filtered = this.details.filter((item)=>(
       item.Name.toLowerCase().includes(this.search.toLowerCase()) ||
-      item.Email.toLowerCase().includes(this.search.toLocaleLowerCase())
+      item.Email.toLowerCase().includes(this.search.toLocaleLowerCase()) || 
+      item.phonenumber==this.search
     ))
     console.log(this.filtered);
   }

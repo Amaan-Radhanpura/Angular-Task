@@ -1,5 +1,15 @@
-<input type="radio">{{"Buy (" +Buy+")"}}
-<input type="radio">{{"Rent (" +Rent+")"}}
+<!-- <input type="radio" name="filter" value="All" [(ngModel)]="selectedFilterButton" (change)="onSelectedRadioButton()">{{"All (" +All+")"}}
+<input type="radio" name="filter" value="greaterThenTen" [(ngModel)]="selectedFilterButton" (change)="onSelectedRadioButton()">{{"Total Quantity greater then 10 (" +greaterThenTen+")"}}
+<input type="radio" name="filter" value="lessThenTen" [(ngModel)]="selectedFilterButton" (change)="onSelectedRadioButton()">{{"Total Quantity less then 10 (" +lessThenTen+")"}} -->
+<mat-form-field>
+    <mat-select type="select" [(ngModel)]="selectedFilterButton" (selectionChange)="onSelectedRadioButton()">
+    <mat-option value="All">All</mat-option>
+    <mat-option value="greaterThenTen">Total Quanity greater then 10</mat-option>
+    <mat-option value="lessThenTen">Total Quanity less then 10</mat-option>
+    </mat-select>
+</mat-form-field>
+    <input type="number" (input)="onSearchFunction()" [(ngModel)]="search">
+
 <table mat-table [dataSource]="carts" class="mat-elevation-z8">
     <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef>Order ID</th>
