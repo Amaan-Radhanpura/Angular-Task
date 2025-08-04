@@ -15,14 +15,22 @@ import { FilterComponent } from './propepertylist/filter/filter.component'
 import {HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './login/login.component'
 import {MatTableModule} from '@angular/material/table'
-import {MatSelectModule} from '@angular/material/select'
+import {MatSelectModule} from '@angular/material/select';
+import { NavbarComponent } from './navbar/navbar.component'
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { ProductsComponent } from './products/products.component'
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import {MatPaginatorModule} from '@angular/material/paginator'
+
 
 @NgModule({
   declarations: [
     AppComponent,
     PropepertylistComponent,
     FilterComponent,
-    LoginComponent
+    LoginComponent,
+    NavbarComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +44,10 @@ import {MatSelectModule} from '@angular/material/select'
     MatSnackBarModule,
     HttpClientModule,
     MatTableModule,
-    MatSelectModule
+    MatSelectModule,
+    MatToolbarModule,
+    MatDialogModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

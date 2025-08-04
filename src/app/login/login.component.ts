@@ -14,6 +14,7 @@ export class LoginComponent {
   details:user[]=[];
   filtered:user[] = [];
  
+   display:boolean=false;
   login:user = {
     Name:"",
     Email:"",
@@ -21,16 +22,22 @@ export class LoginComponent {
   };
 
   onsubmit(form:NgForm){
+    if(form.invalid){
+      this.snackbar.open('please fill out all the details','Dismiss');
+      return;
+    }
+    else{
     console.log(form.value)
     this.details.push({...this.login});
     this.filtered = this.details
     this.snackbar.open('Registered','close');
-    this.router.navigate(['/products']);
+    console.log(this.filtered)
+    }
   }
 
   search:any='';
 
-  display:boolean=false;
+ 
 
   onclick(){
     this.display=!this.display
@@ -41,13 +48,9 @@ export class LoginComponent {
     console.log(event)
     this.filtered = this.details.filter((item)=>(
       item.Name.toLowerCase().includes(this.search.toLowerCase()) ||
-      item.Email.toLowerCase().includes(this.search.toLocaleLowerCase()) || 
-      item.phonenumber==this.search
+      item.Email.toLowerCase().includes(this.search.toLocaleLowerCase()) 
     ))
-    console.log(this.filtered);
   }
-
-
 }
 
 export interface user{

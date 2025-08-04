@@ -4,7 +4,8 @@ import { PropepertylistComponent } from './propepertylist/propepertylist.compone
 import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
-  {path:"products", component:PropepertylistComponent}
+  {path:"products", component:PropepertylistComponent},
+  {path:'login',component:LoginComponent}
 ];
 
 @NgModule({

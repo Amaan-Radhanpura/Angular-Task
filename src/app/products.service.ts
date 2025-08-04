@@ -8,29 +8,33 @@ import { Observable } from 'rxjs';
 export class ProductsService {
   private apiurl='https://dummyjson.com/carts';
   constructor(private http : HttpClient) { }
-   fetch():Observable<main>{
-    return this.http.get<main>('https://dummyjson.com/carts');
+   fetch():Observable<Main>{
+    return this.http.get<Main>(this.apiurl);
+   }
+
+   fetchProducts():Observable<Carts[]>{
+    return this.http.get<Carts[]>(this.apiurl);
    }
 }
 
-export interface main{
-  carts:carts[];
+export interface Main{
+  carts:Carts[];
   limit:number;
   skip:number;
   total:number;
 }
 
-export interface carts{
+export interface Carts{
   discountedTotal:number;
   id:number;
-  products:products[];
+  products:Products[];
   total:number;
   totalProducts:number;
   totalQuantity:number;
   userId:number;
 }
 
-export interface products{
+export interface Products{
   discountedPercentage:number;
   discountedTotal:number;
   id:number;

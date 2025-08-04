@@ -1,32 +1,53 @@
 <div class="container">
-<mat-card class="form"> 
-<mat-card-title>Registration Form</mat-card-title>
-<form #myform="ngForm"  (ngSubmit)="onsubmit(myform)">
-<mat-form-field>  
-<input matInput [(ngModel)]="login.Name"  placeholder="Name" name="Name" autofocus required minlength="5" maxlength="10" ngModel>
-</mat-form-field><br>
-<mat-form-field><input matInput type="email" [(ngModel)]="login.Email"  name="Email" placeholder="Email" email required ngModel></mat-form-field><br>
-<mat-form-field><input matInput type="tel" [(ngModel)]="login.phonenumber" name="phonenumber" placeholder="phonenumber" tel required>
-</mat-form-field><br>
-<button  mat-raised-button color="primary" type="submit" [disabled]="!myform.valid">Submit</button>
-</form>
-</mat-card>
-</div>
-<br>
-<button mat-raised-button (click)="onclick()" > click</button>
-<mat-form-field><input matInput (input)="oninput($event)"></mat-form-field>
-<br><p *ngIf="search != '' " placeholder="Search">Searching for: {{search}}</p>
-<div style="width: full; display: flex; flex-wrap: wrap; gap: 6;" >
+  <mat-card class="form">
+    <mat-card-title>Registration Form</mat-card-title>
+    <form #myform="ngForm" (ngSubmit)="onsubmit(myform)">
+      <mat-form-field>
+        <input matInput [(ngModel)]="login.Name" placeholder="Name" name="Name" autofocus required minlength="5"
+          maxlength="10" #nameInput='ngModel'>
+        <mat-error *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)">
+          <span *ngIf="nameInput.errors?.['required']">Name is Required</span>
+          <span *ngIf="nameInput.errors?.['minlength']">atleast 5 characters</span>
+        </mat-error>
+      </mat-form-field><br>
+      <mat-form-field><input matInput type="email" [(ngModel)]="login.Email" name="Email" placeholder="Email" email
+          required #emailInput='ngModel'>
+        <mat-error *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)">
+          <span *ngIf="emailInput.errors?.['required']">Email is Required</span>
+        </mat-error>
+      </mat-form-field><br>
+      <mat-form-field><input matInput type="tel" [(ngModel)]="login.phonenumber" name="phonenumber"
+          placeholder="phonenumber"  maxlength="10" pattern="^\d{10}$" required #phonenumberInput="ngModel">
+        <mat-error *ngIf="phonenumberInput.invalid && (phonenumberInput.dirty || phonenumberInput.touched)">
+          <span *ngIf="phonenumberInput.errors?.['required']">Name is Required</span>
+          <span *ngIf="phonenumberInput.errors?.['pattern']">atleast 10 Digit Number</span>
+        </mat-error>
 
-<div *ngFor="let detail of filtered" [hidden]="display" style="width: 300px;">
-<br>
-<mat-card class="userdetails">
-  <mat-card-content>
-  <p>Name: {{detail.Name}}</p>
-  <p>Email: {{detail.Email}}</p>
-  <p>phonenumber: {{detail.phonenumber}}</p>
-  </mat-card-content>
-</mat-card>
+      </mat-form-field><br>
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+    </form>
+  </mat-card>
 </div>
+<br>
+<div class="filter">
+<button mat-raised-button (click)="onclick()"> click</button>
+<mat-form-field>
+  <mat-label>Search</mat-label>
+  <input matInput (input)="oninput($event)"></mat-form-field>
+
+  </div>
+<p *ngIf="search != '' " placeholder="Search">Searching for: {{search}}</p>
+<div style="width: full; display: flex; flex-wrap: wrap; gap: 6;">
+
+  <div *ngFor="let detail of filtered" [hidden]="display" style="width: 300px;">
+    <br>
+    <mat-card class="userdetails">
+      <mat-card-content>
+        <p>Name: {{detail.Name}}</p>
+        <p>Email: {{detail.Email}}</p>
+        <p>phonenumber: {{detail.phonenumber}}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>
 <!-- <router-outlet></router-outlet> -->

@@ -1,16 +1,29 @@
 <!-- <input type="radio" name="filter" value="All" [(ngModel)]="selectedFilterButton" (change)="onSelectedRadioButton()">{{"All (" +All+")"}}
 <input type="radio" name="filter" value="greaterThenTen" [(ngModel)]="selectedFilterButton" (change)="onSelectedRadioButton()">{{"Total Quantity greater then 10 (" +greaterThenTen+")"}}
 <input type="radio" name="filter" value="lessThenTen" [(ngModel)]="selectedFilterButton" (change)="onSelectedRadioButton()">{{"Total Quantity less then 10 (" +lessThenTen+")"}} -->
-<mat-form-field>
+
+ <!-- <button (click)="change()">Click me</button> -->
+<!-- 
+<div *ngIf="arrived"> -->
+<div class="filter">
+    <mat-form-field>
     <mat-select type="select" [(ngModel)]="selectedFilterButton" (selectionChange)="onSelectedRadioButton()">
     <mat-option value="All">All</mat-option>
     <mat-option value="greaterThenTen">Total Quanity greater then 10</mat-option>
     <mat-option value="lessThenTen">Total Quanity less then 10</mat-option>
     </mat-select>
 </mat-form-field>
-    <input type="number" (input)="onSearchFunction()" [(ngModel)]="search">
 
-<table mat-table [dataSource]="carts" class="mat-elevation-z8">
+<mat-form-field>
+    <mat-label>Search</mat-label>
+    <input matInput type="number" (input)="onSearchFunction()" [(ngModel)]="search">
+</mat-form-field>
+</div>
+<mat-paginator [length]="carts.length"
+                   [pageSize]="10"
+                   (page)="onPageChange($event)">
+</mat-paginator>
+<table  mat-table [dataSource]="paginatedCarts" class="mat-elevation-z8">
     <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef>Order ID</th>
         <td mat-cell *matCellDef="let element">{{element.id}}</td>
@@ -35,6 +48,12 @@
         <th mat-header-cell *matHeaderCellDef>Discounted Price</th>
         <td mat-cell *matCellDef="let element">{{element.discountedTotal}}</td>
     </ng-container>
+    <!-- <ng-container matColumnDef="products">
+        <th mat-header-cell *matHeaderCellDef>products</th>
+        <td mat-cell *matCellDef="let element">{{element.products}}</td>
+    </ng-container> -->
     <tr mat-header-row *matHeaderRowDef="displayedcolumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedcolumns;"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedcolumns;" (click)="onRowClick(row)"></tr>
 </table>
+
+<!-- </div> -->
