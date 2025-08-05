@@ -19,7 +19,7 @@
       <mat-form-field><input matInput type="tel" [(ngModel)]="login.phonenumber" name="phonenumber"
           placeholder="phonenumber"  maxlength="10" pattern="^\d{10}$" required #phonenumberInput="ngModel">
         <mat-error *ngIf="phonenumberInput.invalid && (phonenumberInput.dirty || phonenumberInput.touched)">
-          <span *ngIf="phonenumberInput.errors?.['required']">Name is Required</span>
+          <span *ngIf="phonenumberInput.errors?.['required']">Number is Required</span>
           <span *ngIf="phonenumberInput.errors?.['pattern']">atleast 10 Digit Number</span>
         </mat-error>
 

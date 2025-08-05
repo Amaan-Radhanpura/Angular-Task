@@ -1,10 +1,3 @@
-<!-- <input type="radio" name="filter" value="All" [(ngModel)]="selectedFilterButton" (change)="onSelectedRadioButton()">{{"All (" +All+")"}}
-<input type="radio" name="filter" value="greaterThenTen" [(ngModel)]="selectedFilterButton" (change)="onSelectedRadioButton()">{{"Total Quantity greater then 10 (" +greaterThenTen+")"}}
-<input type="radio" name="filter" value="lessThenTen" [(ngModel)]="selectedFilterButton" (change)="onSelectedRadioButton()">{{"Total Quantity less then 10 (" +lessThenTen+")"}} -->
-
- <!-- <button (click)="change()">Click me</button> -->
-<!-- 
-<div *ngIf="arrived"> -->
 <div class="filter">
     <mat-form-field>
     <mat-select type="select" [(ngModel)]="selectedFilterButton" (selectionChange)="onSelectedRadioButton()">
@@ -19,41 +12,83 @@
     <input matInput type="number" (input)="onSearchFunction()" [(ngModel)]="search">
 </mat-form-field>
 </div>
-<mat-paginator [length]="carts.length"
-                   [pageSize]="10"
-                   (page)="onPageChange($event)">
-</mat-paginator>
-<table  mat-table [dataSource]="paginatedCarts" class="mat-elevation-z8">
-    <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef>Order ID</th>
-        <td mat-cell *matCellDef="let element">{{element.id}}</td>
-    </ng-container>
-    <ng-container matColumnDef="userId">
-        <th mat-header-cell *matHeaderCellDef>UserID</th>
-        <td mat-cell *matCellDef="let element">{{element.userId}}</td>
-    </ng-container>
-    <ng-container matColumnDef="totalProducts">
-        <th mat-header-cell *matHeaderCellDef>Total Products</th>
-        <td mat-cell *matCellDef="let element">{{element.totalProducts}}</td>
-    </ng-container>
-    <ng-container matColumnDef="totalQuantity">
-        <th mat-header-cell *matHeaderCellDef>Total Quantity</th>
-        <td mat-cell *matCellDef="let element">{{element.totalQuantity}}</td>
-    </ng-container>
-    <ng-container matColumnDef="total">
-        <th mat-header-cell *matHeaderCellDef>Total Price</th>
-        <td mat-cell *matCellDef="let element">{{element.total}}</td>
-    </ng-container>
-    <ng-container matColumnDef="discountedTotal">
-        <th mat-header-cell *matHeaderCellDef>Discounted Price</th>
-        <td mat-cell *matCellDef="let element">{{element.discountedTotal}}</td>
-    </ng-container>
-    <!-- <ng-container matColumnDef="products">
-        <th mat-header-cell *matHeaderCellDef>products</th>
-        <td mat-cell *matCellDef="let element">{{element.products}}</td>
-    </ng-container> -->
-    <tr mat-header-row *matHeaderRowDef="displayedcolumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedcolumns;" (click)="onRowClick(row)"></tr>
-</table>
 
-<!-- </div> -->
+<h2>Carts Table</h2>
+<table mat-table [dataSource]="ds" class="mat-elevation-z8" multiTemplateDataRows>
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>Order ID</th>
+    <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+  </ng-container>
+  <ng-container matColumnDef="userId">
+    <th mat-header-cell *matHeaderCellDef>User ID</th>
+    <td mat-cell *matCellDef="let element">{{ element.userId }}</td>
+  </ng-container>
+  <ng-container matColumnDef="totalProducts">
+    <th mat-header-cell *matHeaderCellDef>Total Products</th>
+    <td mat-cell *matCellDef="let element">{{ element.totalProducts }}</td>
+  </ng-container>
+  <ng-container matColumnDef="totalQuantity">
+    <th mat-header-cell *matHeaderCellDef>Total Quantity</th>
+    <td mat-cell *matCellDef="let element">{{ element.totalQuantity }}</td>
+  </ng-container>
+  <ng-container matColumnDef="total">
+    <th mat-header-cell *matHeaderCellDef>Total</th>
+    <td mat-cell *matCellDef="let element">${{ element.total }}</td>
+  </ng-container>
+  <ng-container matColumnDef="discountedTotal">
+    <th mat-header-cell *matHeaderCellDef>Discounted Total</th>
+    <td mat-cell *matCellDef="let element">${{ element.discountedTotal }}</td>
+  </ng-container>
+  
+  <ng-container matColumnDef="expandedDetail">
+    <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns1.length">
+      <div  *ngIf="expandedElement === element">
+        <table mat-table [dataSource]="element.products" class="mat-elevation-z2">
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let prod">{{ prod.id }}</td>
+          </ng-container>
+          <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef>Title</th>
+            <td mat-cell *matCellDef="let prod">{{ prod.title }}</td>
+          </ng-container>
+          <ng-container matColumnDef="quantity">
+            <th mat-header-cell *matHeaderCellDef>Quantity</th>
+            <td mat-cell *matCellDef="let prod">{{ prod.quantity }}</td>
+          </ng-container>
+          <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef>Price</th>
+            <td mat-cell *matCellDef="let prod">${{ prod.price }}</td>
+          </ng-container>
+          <ng-container matColumnDef="discountPercentage">
+            <th mat-header-cell *matHeaderCellDef>Discount %</th>
+            <td mat-cell *matCellDef="let prod">{{ prod.discountPercentage }}%</td>
+          </ng-container>
+          <ng-container matColumnDef="discountedTotal">
+            <th mat-header-cell *matHeaderCellDef>Discounted Total</th>
+            <td mat-cell *matCellDef="let prod">${{ prod.discountedTotal }}</td>
+          </ng-container>
+          <ng-container matColumnDef="total">
+            <th mat-header-cell *matHeaderCellDef>Total</th>
+            <td mat-cell *matCellDef="let prod">${{ prod.total }}</td>
+          </ng-container>
+ 
+          <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns1"></tr>
+        </table>
+      </div>
+    </td>
+  </ng-container>
+ 
+  <tr mat-header-row *matHeaderRowDef="displayedcolumns"></tr>
+  <tr mat-row
+      *matRowDef="let row; columns: displayedcolumns"
+      class="element-row"
+      (click)="toggleRow(row)">
+  </tr>
+  <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
+</table>
+<mat-paginator #paginator [length]="ds.data.length"
+[pageSizeOptions]="[5, 10]" 
+showFirstLastButtons>
+</mat-paginator>

@@ -28,9 +28,7 @@ constructor(private service:ProductsService){}
 ngOnInit():void{
   this.service.fetch().subscribe(data=>{
     this.main=data
-    console.log(data)
     this.CartsData=data.carts
-    console.log(this.CartsData)
     this.All=this.CartsData.length;
     this.greaterThenTen=this.CartsData.filter(item=>item.totalQuantity>10).length;
     this.lessThenTen=this.CartsData.filter(item=>item.totalQuantity<10).length; 
@@ -42,7 +40,6 @@ onFilterChange(value:string){
   console.log(this.selectedRadioButton)
   if(this.selectedRadioButton == 'All'){
     this.Filtereddata=this.CartsData
-    console.log(this.Filtereddata)
   }
   else if(this.selectedRadioButton=='greaterThenTen'){
     this.Filtereddata=this.CartsData.filter(item=>item.totalQuantity>10)

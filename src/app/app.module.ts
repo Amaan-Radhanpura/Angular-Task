@@ -21,7 +21,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { ProductsComponent } from './products/products.component'
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import {MatPaginatorModule} from '@angular/material/paginator'
-
+import {MatIconModule} from '@angular/material/icon'
 
 @NgModule({
   declarations: [
@@ -47,7 +47,8 @@ import {MatPaginatorModule} from '@angular/material/paginator'
     MatSelectModule,
     MatToolbarModule,
     MatDialogModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
