@@ -1,0 +1,22 @@
+.form{
+    width: 400px;
+    align-items: center;
+    justify-items: center;
+    justify-content: space-evenly;
+    display: flex;
+    height: 400px;
+}
+
+.container{
+    margin-top: 100px;
+    justify-items: center;
+    justify-content: space-evenly;
+}
+
+
+.filter{
+display: flex;
+align-items: center;
+justify-content: space-around;
+
+}

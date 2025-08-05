@@ -12,12 +12,25 @@ import {MatCardModule} from '@angular/material/card'
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { PropepertylistComponent } from './propepertylist/propepertylist.component';
 import { FilterComponent } from './propepertylist/filter/filter.component'
+import {HttpClientModule} from '@angular/common/http';
+import { LoginComponent } from './login/login.component'
+import {MatTableModule} from '@angular/material/table'
+import {MatSelectModule} from '@angular/material/select';
+import { NavbarComponent } from './navbar/navbar.component'
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { ProductsComponent } from './products/products.component'
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import {MatPaginatorModule} from '@angular/material/paginator'
+import {MatIconModule} from '@angular/material/icon'
 
 @NgModule({
   declarations: [
     AppComponent,
     PropepertylistComponent,
-    FilterComponent
+    FilterComponent,
+    LoginComponent,
+    NavbarComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +41,14 @@ import { FilterComponent } from './propepertylist/filter/filter.component'
     MatInputModule,
     MatFormFieldModule,
     MatCardModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    HttpClientModule,
+    MatTableModule,
+    MatSelectModule,
+    MatToolbarModule,
+    MatDialogModule,
+    MatPaginatorModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

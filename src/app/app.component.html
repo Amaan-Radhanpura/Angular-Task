@@ -15,36 +15,8 @@
 <button (click)="form()">Submit</button> -->
 
 <!-- 30-07-25  Directives -->
-<input (input)="oninput($event)">
-<br><p *ngIf="search != '' ">Searching for: {{search}}</p>
-<br>
+<!-- <app-login></app-login> -->
+<!-- <app-propepertylist></app-propepertylist> -->
+<app-navbar></app-navbar>
+<!-- <app-products></app-products> -->
 
-
-<mat-card class="form"> 
-  <mat-card-title>Registration Form</mat-card-title>
-<form class="form"  (ngSubmit)="onsubmit()">
-<mat-form-field>  <input matInput [(ngModel)]="login.Name"  placeholder="Name" name="Name" autofocus>
-</mat-form-field><br>
-<mat-form-field><input matInput [(ngModel)]="login.Email"  name="Email" placeholder="Email"></mat-form-field><br>
-<mat-form-field><input matInput [(ngModel)]="login.phonenumber" name="phonenumber" placeholder="phonenumber">
-</mat-form-field><br>
-<button mat-stroked-button color="primary" type="submit">Submit</button>
-</form>
-</mat-card>
-
-<br>
-<button mat-raised-button (click)="onclick()" > click</button>
-<div style="width: full; display: flex; flex-wrap: wrap; gap: 6;" >
-<div *ngFor="let detail of details" [hidden]="display" style="width: 300px;">
-<mat-card class="userdetails">
-  <mat-card-content>
-  <p>Name: {{detail.Name}}</p>
-  <p>Email: {{detail.Email}}</p>
-  <p>phonenumber: {{detail.phonenumber}}</p>
-  </mat-card-content>
-</mat-card>
-</div>
-</div>
-<br>
-
-<app-propepertylist></app-propepertylist>
